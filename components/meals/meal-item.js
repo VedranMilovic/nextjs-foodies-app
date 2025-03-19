@@ -7,7 +7,7 @@ export default function MealItem({ title, image, summary, creator, slug }) {
       <div className={classes.image}>
         {/* Image component with fill prop to fit container dimensions, fill je umjesto width and height (ako ih ne znamo),govori Next.js  da popuni prostor */}
         <Image
-          src={`https://vedranmilovicnextjsdemoimages.s3.amazonaws.com/${image}`}
+          src={`https://vedranmilovicnextjsdemoimages.s3.eu-north-1.amazonaws.com/${image}`}
           alt={title}
           fill
         />
