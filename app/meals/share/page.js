@@ -2,12 +2,13 @@
 
 import classes from "./page.module.css";
 import ImagePicker from "@/components/meals/image-picker";
+import MealsFormSubmit from "@/components/meals/meals-form-submit";
+import { shareMeal } from "@/lib/actions";
+import { useFormState } from "react-dom";
 
 export default function SharedMealsPage() {
-  function handleSubmit(event) {
-    event.preventDefault();
-    // Form submission logic will be added later
-  }
+  //od tud
+  const [state, formAction] = useFormState(shareMeal, { message: null });
 
   return (
     <>
@@ -18,7 +19,7 @@ export default function SharedMealsPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={classes.main}>
-        <form onSubmit={handleSubmit} className={classes.form}>
+        <form className={classes.form} action={formAction}>
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Name</label>
@@ -75,11 +76,12 @@ export default function SharedMealsPage() {
             />
           </p>
 
-          <ImagePicker label="Image" name="image" />
+          <ImagePicker label="Your image" name="image" />
+          {state.message && <p>{state.message}</p>}
 
-          <div className={classes.actions}>
-            <button type="submit">Share Meal</button>
-          </div>
+          <p className={classes.actions}>
+            <MealsFormSubmit />
+          </p>
         </form>
       </main>
     </>
